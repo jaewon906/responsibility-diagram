@@ -117,7 +117,53 @@ const dummy = [
                         responsibilityCd: ['3'],
                         financeResponsibilityCd: ['마','사','아','자'],
                         managementResponsibilityCd: ['G','K'],
-                    }
+                    },
+                    {
+                        jikchkCd:'CIB',
+                        jikchkNm:'CIB그룹2',
+                        lvl:'3',
+                        userNm:'김OO 부행장',
+                        responsibilityCd: ['3'],
+                        financeResponsibilityCd: ['가', '나'],
+                        managementResponsibilityCd: ['G','K','M','N'],
+                    },
+                    {
+                        jikchkCd:'금융소비자보호',
+                        jikchkNm:'금융소비자보호그룹2',
+                        lvl:'3',
+                        userNm:'송OO 부행장',
+                        responsibilityCd: ['3'],
+                        financeResponsibilityCd: ['마','사','아','자'],
+                        managementResponsibilityCd: ['G','K'],
+                    },
+                    {
+                        jikchkCd:'IT',
+                        jikchkNm:'IT그룹2',
+                        lvl:'3',
+                        userNm:'김OO 부행장',
+                        responsibilityCd: ['3'],
+                        financeResponsibilityCd: ['가', '나'],
+                        managementResponsibilityCd: ['G','K','M','N'],
+                    },
+                    {
+                        jikchkCd:'외환',
+                        jikchkNm:'외환그룹2',
+                        lvl:'3',
+                        userNm:'송OO 부행장',
+                        responsibilityCd: ['3'],
+                        financeResponsibilityCd: ['마','사','아','자'],
+                        managementResponsibilityCd: ['G','K'],
+                    },
+                    {
+                        jikchkCd:'연금사업',
+                        jikchkNm:'연금사업그룹2',
+                        lvl:'3',
+                        userNm:'김OO 부행장',
+                        responsibilityCd: ['3'],
+                        financeResponsibilityCd: ['가', '나'],
+                        managementResponsibilityCd: ['G','K','M','N'],
+                    },
+
                 ]
             }
         ]

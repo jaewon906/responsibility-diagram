@@ -15,7 +15,7 @@ import DiagramRow from "@/components/DiagramRow.vue";
 const props = defineProps({
   data:{
     type: Array,
-    default: {},
+    default: [],
   }
 })
 

@@ -39,7 +39,7 @@ const forwardPage = ()=>{
 
 
 <style scoped>
-.element__wrapper{}
+.element__wrapper{margin-bottom: 20px;}
 .element{min-width:120px;max-width:180px; cursor: pointer; transition: opacity 0.1s;}
 .element:hover{opacity: 0.5 }
 .element__groupName1{height:40px; border-radius: 6px 6px 0 0; padding: 0 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; background-color: black; font-size: 0.8rem; color: white; transition: background-color 0.1s}

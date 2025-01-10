@@ -1,6 +1,7 @@
 
 <template>
   <div class="diagram__page">
+    <diagram-indicator/>
     <diagram-row :data="props.data"/>
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script setup>
 import {onMounted} from "vue";
 import DiagramRow from "@/components/DiagramRow.vue";
+import DiagramIndicator from "@/components/DiagramIndicator.vue";
 
 const props = defineProps({
   data:{
@@ -26,6 +28,7 @@ const init = ()=>{}
 
 <style scoped>
 .diagram__page{
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

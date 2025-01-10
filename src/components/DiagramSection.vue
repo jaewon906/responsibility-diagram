@@ -13,7 +13,7 @@ import DiagramElement from "@/components/DiagramElement.vue";
 const props = defineProps({
   data:{
     type: Array,
-    default: {},
+    default: [],
   }
 })
 onMounted(()=>{init()})
