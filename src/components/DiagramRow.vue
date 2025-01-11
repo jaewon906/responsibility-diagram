@@ -1,9 +1,14 @@
 
 <template>
+    <!--view-->
     <diagram-section v-if="props.data.length > 0"  :data="props.data"/>
+    <!--end view-->
+
+    <!--recursive-->
     <diagram-row v-for="(items, idx) in props.data"
                  :data="items.children"
                  :key="idx"/>
+    <!--end recursive-->
 </template>
 
 
