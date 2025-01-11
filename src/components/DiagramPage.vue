@@ -10,7 +10,7 @@
     <!--end diagram view-->
 
     <!--draw line-->
-    <svg id="lines" class="lines" xmlns="http://www.w3.org/2000/svg">
+    <svg id="lines" :style="'height:'+height" class="lines" xmlns="http://www.w3.org/2000/svg">
       <line id="line"
           v-for="(line, idx) in data.lines"
           :key="idx"
@@ -19,8 +19,8 @@
           :x2="line.x2"
           :y2="line.y2"
           stroke="gray"
-          stroke-opacity="0.3"
-          stroke-width="1"
+          stroke-opacity="0.18"
+          stroke-width="1.5"
           marker-end="url(#arrow)"
       />
       <defs>
@@ -35,7 +35,7 @@
 
 
 <script setup>
-import {nextTick, onBeforeUnmount, onMounted, ref, watch} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 import DiagramRow from "@/components/DiagramRow.vue";
 import DiagramIndicator from "@/components/DiagramIndicator.vue";
 import dummys from "@/dummy.js";
@@ -46,6 +46,7 @@ const props = defineProps({
     default: {},
   }
 })
+const height = ref(0)
 const data = ref({
   lines:[]
 })
@@ -66,6 +67,11 @@ const test2 = () =>{
 const init = ()=>{
   makeResponsibilityDiagram(dummys)
   test()
+  // css에서 svg height를 부모 요소의 100%로 지정했었다.
+  // 부모의 css속성중엔 overflow: auto가 있다. 그 결과 브라우저의 높이를 줄이면 전체 view 길이는 일정하나,
+  // height가 줄어들어 svg height 또한 줄어들어 line이 짤리는 현상이 있었다.
+  // 따라서 부모의 view 높이를 불러와서 svg style에 적용
+  height.value = document.getElementsByClassName("diagram__page")[0].scrollHeight
 }
 
 
@@ -119,7 +125,6 @@ const test = () =>{
 }
 .lines{
   width:100%;
-  height:100%;
   position: absolute;
 }
 </style>
