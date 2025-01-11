@@ -35,7 +35,6 @@ import {computed, ref} from "vue";
     }
   })
   const onChange = (e) => {
-  console.log("SFSDFDSF")
     selected.value = true
     hasError.value = false
     let value = e.target.value
