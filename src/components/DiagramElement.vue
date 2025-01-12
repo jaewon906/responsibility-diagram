@@ -1,7 +1,7 @@
 
 <template>
   <div :class="'element__wrapper'+(data.isResponsibilityExists ? ' ': ' disabled')"
-       :style="props.data.lvl !== '3' ?'margin-left:300px':''"
+       :style="props.data.lvl !== '3' ?'margin-left:350px':''"
   >
     <div :id="props.data.groupCd" class="element" @click="forwardPage">
       <div :class="'element__groupName' + props.data.lvl">{{props.data.groupNm}}</div>
