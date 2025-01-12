@@ -11,6 +11,16 @@
 
     <!--draw line-->
     <svg id="lines" :style="'height:'+height+'; width:'+width + '; min-width:700px;'" class="lines" xmlns="http://www.w3.org/2000/svg">
+      <line id="line_middle"
+            v-for="(line, idx) in data.lines"
+            :key="idx"
+            :x1="line.x1"
+            :y1="line.y2-20"
+            :x2="line.x2"
+            :y2="line.y2-20"
+            stroke="rgb(200,200,200)"
+            stroke-width="1.5"
+      />
       <line id="line_start"
             v-for="(line, idx) in data.lines"
             :key="idx"
@@ -21,16 +31,6 @@
             stroke="rgb(200,200,200)"
             stroke-width="1.5"
             marker-end="url(#dot)"
-      />
-      <line id="line_middle"
-            v-for="(line, idx) in data.lines"
-            :key="idx"
-            :x1="line.x1"
-            :y1="line.y2-20"
-            :x2="line.x2"
-            :y2="line.y2-20"
-            stroke="rgb(200,200,200)"
-            stroke-width="1.5"
       />
       <line id="line_end"
             v-for="(line, idx) in data.lines"
@@ -48,7 +48,7 @@
           <path d="M0,0 L10,5 L0,10" fill="black" />
         </marker>
         <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-          <circle cx="5" cy="5" r="3" fill="rgb(180,180,180)" />
+          <circle cx="5" cy="5" r="3" fill="rgb(100,100,100)" />
         </marker>
       </defs>
     </svg>
