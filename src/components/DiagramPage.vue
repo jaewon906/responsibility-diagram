@@ -10,22 +10,45 @@
     <!--end diagram view-->
 
     <!--draw line-->
-    <svg id="lines" :style="'height:'+height+'; width:'+width + '; min-width:1200px;'" class="lines" xmlns="http://www.w3.org/2000/svg">
-      <line id="line"
-          v-for="(line, idx) in data.lines"
-          :key="idx"
-          :x1="line.x1"
-          :y1="line.y1"
-          :x2="line.x2"
-          :y2="line.y2"
-          stroke="gray"
-          stroke-opacity="0.18"
-          stroke-width="1.5"
-          marker-end="url(#arrow)"
+    <svg id="lines" :style="'height:'+height+'; width:'+width + '; min-width:700px;'" class="lines" xmlns="http://www.w3.org/2000/svg">
+      <line id="line_start"
+            v-for="(line, idx) in data.lines"
+            :key="idx"
+            :x1="line.x1"
+            :y1="line.y1"
+            :x2="line.x1"
+            :y2="line.y2-20"
+            stroke="rgb(200,200,200)"
+            stroke-width="1.5"
+            marker-end="url(#dot)"
+      />
+      <line id="line_middle"
+            v-for="(line, idx) in data.lines"
+            :key="idx"
+            :x1="line.x1"
+            :y1="line.y2-20"
+            :x2="line.x2"
+            :y2="line.y2-20"
+            stroke="rgb(200,200,200)"
+            stroke-width="1.5"
+      />
+      <line id="line_end"
+            v-for="(line, idx) in data.lines"
+            :key="idx"
+            :x1="line.x2"
+            :y1="line.y2-20"
+            :x2="line.x2"
+            :y2="line.y2"
+            stroke="rgb(200,200,200)"
+            stroke-width="1.5"
+            marker-end="url(#arrow)"
       />
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="6" markerHeight="6" orient="auto">
           <path d="M0,0 L10,5 L0,10" fill="black" />
+        </marker>
+        <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <circle cx="5" cy="5" r="3" fill="rgb(180,180,180)" />
         </marker>
       </defs>
     </svg>
@@ -53,35 +76,40 @@ const data = ref({
 })
 const resData = ref([])
 
+const svgMinWidth = 700
+
 onMounted(()=>{
   init()
-  window.addEventListener('resize', removeLine);
-  window.addEventListener('resize', makeLineData);
   window.addEventListener('resize', ()=>{
-    width.value = document.getElementsByClassName("diagram__page")[0].scrollWidth
+    removeLine();
+    makeLineData();
+    setSvgWidth();
   });
+  document.getElementsByClassName("diagram__page")[0]
+          .addEventListener('scroll', setSvgWidth);
 })
 onBeforeUnmount(()=>{
-  window.removeEventListener('resize', removeLine);
-  window.removeEventListener('resize', makeLineData);
   window.removeEventListener('resize', ()=>{
-    width.value = document.getElementsByClassName("diagram__page")[0].scrollWidth
+    removeLine();
+    makeLineData();
+    setSvgWidth();
   });
+  document.getElementsByClassName("diagram__page")[0]
+          .addEventListener('scroll', setSvgWidth);
 })
 const removeLine = () =>{
-  document.querySelectorAll("#line").forEach(obj=>obj.remove())
+  document.querySelectorAll("#line_start").forEach(obj=>obj.remove())
+  document.querySelectorAll("#line_middle").forEach(obj=>obj.remove())
+  document.querySelectorAll("#line_end").forEach(obj=>obj.remove())
 }
 const init = ()=>{
   makeResponsibilityDiagram(dummys)
   makeLineData()
+  setSvgWidth()
   // css에서 svg height를 부모 요소의 100%로 지정했었다.
   // 부모의 css속성중엔 overflow: auto가 있다. 그 결과 브라우저의 높이를 줄이면 전체 view 길이는 일정하나,
   // height가 줄어들어 svg height 또한 줄어들어 line이 짤리는 현상이 있었다.
   // 따라서 부모의 view 높이를 불러와서 svg style에 적용
-  console.log(document.getElementsByClassName("diagram__page")[0].clientWidth)
-  console.log(document.getElementsByClassName("diagram__page")[0].scrollLeft)
-  console.log(document.getElementsByClassName("diagram__page")[0].scrollWidth)
-  width.value = document.getElementsByClassName("diagram__page")[0].scrollWidth
   height.value = document.getElementsByClassName("diagram__page")[0].scrollHeight
 }
 
@@ -120,6 +148,10 @@ const makeLineData = () =>{
     }
   }
 }
+const setSvgWidth = () => {
+  const svgElement = document.getElementsByClassName("diagram__page")[0]
+  width.value = Math.max(svgElement.clientWidth + svgElement.scrollLeft, svgMinWidth)
+};
 </script>
 
 

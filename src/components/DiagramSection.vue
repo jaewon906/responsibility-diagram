@@ -22,6 +22,7 @@ const props = defineProps({
 onMounted(()=>{init()})
 
 const init = ()=>{}
+//#todo: element에서 임시로 margin줘서 띄워놨는데 grid에서 띄워지도록 설정해야댐
 const gridType = computed(()=>{
   let columns = ''
   let grid = "display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;"
