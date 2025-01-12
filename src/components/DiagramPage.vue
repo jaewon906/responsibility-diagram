@@ -10,7 +10,7 @@
     <!--end diagram view-->
 
     <!--draw line-->
-    <svg id="lines" :style="'height:'+height" class="lines" xmlns="http://www.w3.org/2000/svg">
+    <svg id="lines" :style="'height:'+height+'; width:'+width + '; min-width:1200px;'" class="lines" xmlns="http://www.w3.org/2000/svg">
       <line id="line"
           v-for="(line, idx) in data.lines"
           :key="idx"
@@ -47,6 +47,7 @@ const props = defineProps({
   }
 })
 const height = ref(0)
+const width = ref(0)
 const data = ref({
   lines:[]
 })
@@ -54,23 +55,33 @@ const resData = ref([])
 
 onMounted(()=>{
   init()
-  window.addEventListener('resize', test2);
-  window.addEventListener('resize', test);
+  window.addEventListener('resize', removeLine);
+  window.addEventListener('resize', makeLineData);
+  window.addEventListener('resize', ()=>{
+    width.value = document.getElementsByClassName("diagram__page")[0].scrollWidth
+  });
 })
 onBeforeUnmount(()=>{
-  window.removeEventListener('resize', test2);
-  window.removeEventListener('resize', test);
+  window.removeEventListener('resize', removeLine);
+  window.removeEventListener('resize', makeLineData);
+  window.removeEventListener('resize', ()=>{
+    width.value = document.getElementsByClassName("diagram__page")[0].scrollWidth
+  });
 })
-const test2 = () =>{
+const removeLine = () =>{
   document.querySelectorAll("#line").forEach(obj=>obj.remove())
 }
 const init = ()=>{
   makeResponsibilityDiagram(dummys)
-  test()
+  makeLineData()
   // css에서 svg height를 부모 요소의 100%로 지정했었다.
   // 부모의 css속성중엔 overflow: auto가 있다. 그 결과 브라우저의 높이를 줄이면 전체 view 길이는 일정하나,
   // height가 줄어들어 svg height 또한 줄어들어 line이 짤리는 현상이 있었다.
   // 따라서 부모의 view 높이를 불러와서 svg style에 적용
+  console.log(document.getElementsByClassName("diagram__page")[0].clientWidth)
+  console.log(document.getElementsByClassName("diagram__page")[0].scrollLeft)
+  console.log(document.getElementsByClassName("diagram__page")[0].scrollWidth)
+  width.value = document.getElementsByClassName("diagram__page")[0].scrollWidth
   height.value = document.getElementsByClassName("diagram__page")[0].scrollHeight
 }
 
@@ -88,7 +99,7 @@ const makeResponsibilityDiagram = (data) => {
     resData.value.unshift(obj)
   }
 }
-const test = () =>{
+const makeLineData = () =>{
   for (let obj1 of resData.value) {
     for (let obj2 of resData.value) {
       // 기준 데이터의 그룹이 비교 데이터의 상위그룹과 동일하면 parent - child 구조
@@ -117,14 +128,12 @@ const test = () =>{
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   height: 80%;
   background-color: rgb(235, 239, 241);
   overflow: auto;
 }
 .lines{
-  width:100%;
   position: absolute;
 }
 </style>

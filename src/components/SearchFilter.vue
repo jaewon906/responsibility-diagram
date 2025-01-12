@@ -103,6 +103,9 @@ import {onMounted, ref, watch} from "vue";
   justify-content: space-between;
 }
 .search_label{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width:100px;
   text-align: center;
   font-weight: bold;

@@ -1,6 +1,8 @@
 
 <template>
-  <div :class="'element__wrapper'+(data.isResponsibilityExists ? ' ': ' disabled')">
+  <div :class="'element__wrapper'+(data.isResponsibilityExists ? ' ': ' disabled')"
+       :style="props.data.lvl !== '3' ?'margin-left:300px':''"
+  >
     <div :id="props.data.groupCd" class="element" @click="forwardPage">
       <div :class="'element__groupName' + props.data.lvl">{{props.data.groupNm}}</div>
       <div class="element__groupOwner">{{props.data.userNm}}</div>
@@ -82,7 +84,7 @@ const forwardPage = ()=>{
 
 <style scoped>
 .element__wrapper{z-index:999;}
-.element{min-width:140px;max-width:180px; cursor: pointer; transition: opacity 0.1s;}
+.element{min-width:140px; cursor: pointer; transition: opacity 0.1s;}
 .element:hover{opacity: 0.5 }
 .element__groupName1{height:40px; border-radius: 6px 6px 0 0; padding: 0 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; background-color: black; font-size: 0.8rem; color: white; transition: background-color 0.1s}
 .element__groupName2{height:40px; border-radius: 6px 6px 0 0; padding: 0 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; background-color: rgb(243,248,255); font-size: 0.8rem; color: black; transition: background-color 0.1s}
