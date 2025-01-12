@@ -38,7 +38,7 @@
             :x1="line.x2"
             :y1="line.y2-20"
             :x2="line.x2"
-            :y2="line.y2"
+            :y2="line.y2-3"
             stroke="rgb(200,200,200)"
             stroke-width="1.5"
             marker-end="url(#arrow)"
