@@ -14,4 +14,10 @@ Vue3, composition API
 
 
 ## View
+1. 기본 화면
+<br/><br/>
 ![ex_screenshot](main_image.png)
+<br/><br/><br/><br/>
+2. 선택 시 화면
+<br/><br/>
+![ex_screenshot](selected_image.png)
