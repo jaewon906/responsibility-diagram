@@ -8,7 +8,7 @@
     <!--diagram view-->
     <diagram-row :data="props.data"/>
     <!--end diagram view-->
-
+    <!--test-->
     <!--draw line-->
     <svg id="lines" :style="'height:'+height+'; width:'+width + '; min-width:700px;'" class="lines" xmlns="http://www.w3.org/2000/svg">
       <line id="line_middle"
