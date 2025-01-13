@@ -9,8 +9,9 @@ Vue3, composition API
 3. 화면에서 요소 위치 변경시 연결선도 자동으로 이동 (반응형 적용)
 4. 각 그룹 클릭 시 이벤트 생성
 5. 책무 상세 설명은 왼쪽 상단 hover시 볼 수 있다. (기능만 구현)
-6. 부가적으로 button, select, input 태그는 공통으로 만들어 특정 프로퍼티 추가시 UI 변경 기능 구현
-7. select, input 태그엔 hasError 속성이 있다. validation 체크 시 해당 속성을 true로 적용할 경우 붉은색으로 강조되고 errorMessage로 어떤 이유로 문제가 발생했는지 알 수 있도록 구현했다.
+6. 책무 구조도 이미지 다운로드 기능 구현
+7. 부가적으로 button, select, input 태그는 공통으로 만들어 특정 프로퍼티 추가시 UI 변경 기능 구현
+8. select, input 태그엔 hasError 속성이 있다. validation 체크 시 해당 속성을 true로 적용할 경우 붉은색으로 강조되고 errorMessage로 어떤 이유로 문제가 발생했는지 알 수 있도록 구현했다.
 
 
 ## View
